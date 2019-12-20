@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Authors>Matthew O'Brien</Authors>
+    <Company />
+    <Product />
+    <Description>A simple string builder and fast append performance.</Description>
+    <Copyright>2019 Matthew O'Brien</Copyright>
+    <PackageTags>csharp, c#, string, stringbuilder</PackageTags>
+    <RepositoryUrl>https://github.com/ChaosPandion/StrandedStringBuilder</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -14,6 +24,13 @@
 
   <ItemGroup>
     <PackageReference Include="System.Memory" Version="4.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
