@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrandedStringBuilder", "StrandedStringBuilder\StrandedStringBuilder.csproj", "{0298AA39-55DD-49B5-B0F0-42BF5BF5029B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrandedStringBuilder", "StrandedStringBuilder\StrandedStringBuilder.csproj", "{0298AA39-55DD-49B5-B0F0-42BF5BF5029B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrandedStringBuilder.Console", "StrandedStringBuilder.Console\StrandedStringBuilder.Console.csproj", "{14DD9DAF-EF8D-4992-B187-2248BBBFBFC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrandedStringBuilder.Console", "StrandedStringBuilder.Console\StrandedStringBuilder.Console.csproj", "{14DD9DAF-EF8D-4992-B187-2248BBBFBFC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrandedStringBuilder.Tests", "StrandedStringBuilder.Tests\StrandedStringBuilder.Tests.csproj", "{0B2CAAC6-3714-4C9A-A470-82DC1398AD35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrandedStringBuilder.Tests", "StrandedStringBuilder.Tests\StrandedStringBuilder.Tests.csproj", "{0B2CAAC6-3714-4C9A-A470-82DC1398AD35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrandedStringBuilder.Benchmarks", "StrandedStringBuilder.Benchmarks\StrandedStringBuilder.Benchmarks.csproj", "{644798DC-9168-4562-8B51-D6FFAEC8BABD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrandedStringBuilder.Benchmarks", "StrandedStringBuilder.Benchmarks\StrandedStringBuilder.Benchmarks.csproj", "{644798DC-9168-4562-8B51-D6FFAEC8BABD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicStringBuilder", "MagicStringBuilder\MagicStringBuilder.csproj", "{8193A579-2DA9-4194-A984-2302F1AEB85B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{644798DC-9168-4562-8B51-D6FFAEC8BABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{644798DC-9168-4562-8B51-D6FFAEC8BABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{644798DC-9168-4562-8B51-D6FFAEC8BABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8193A579-2DA9-4194-A984-2302F1AEB85B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8193A579-2DA9-4194-A984-2302F1AEB85B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8193A579-2DA9-4194-A984-2302F1AEB85B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8193A579-2DA9-4194-A984-2302F1AEB85B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

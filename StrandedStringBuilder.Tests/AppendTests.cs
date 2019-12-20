@@ -6,6 +6,7 @@ namespace StrandedStringBuilder.Tests
     public class AppendTests
     {
         [Theory]
+        [InlineData(new object[] { null, "B", "C" }, "BC")]
         [InlineData(new object[] { "A", "B", "C" }, "ABC")]
         [InlineData(new object[] { "A", 1, "C" }, "A1C")]
         [InlineData(new object[] { "A", true, "C" }, "ATrueC")]

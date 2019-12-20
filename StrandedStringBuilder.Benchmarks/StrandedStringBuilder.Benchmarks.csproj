@@ -7,9 +7,12 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.12.0" />
+    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.12.0" />
+    <PackageReference Include="LiteStringBuilder" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MagicStringBuilder\MagicStringBuilder.csproj" />
     <ProjectReference Include="..\StrandedStringBuilder\StrandedStringBuilder.csproj" />
   </ItemGroup>
 

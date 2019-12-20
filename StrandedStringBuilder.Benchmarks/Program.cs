@@ -2,8 +2,15 @@
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Loggers;
+using BenchmarkDotNet.Columns;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
+using BenchmarkDotNet.Order;
+using BenchmarkDotNet.Reports;
+using System.Collections.Immutable;
+using System.Linq;
 
 namespace StrandedStringBuilder.Benchmarks
 {
@@ -41,209 +48,308 @@ namespace StrandedStringBuilder.Benchmarks
             new DateTime(2019, 9, 6),
         };
 
-        [Benchmark]
-        public void StrandedStringBuilderAppend()
+        //[Benchmark]
+        //public void StrandedStringBuilderAppend()
+        //{
+        //    var sb = new StrandedStringBuilder.StringBuilder();
+        //    foreach (var item in _appendData)
+        //        sb.Append(item);
+        //}
+
+        //[Benchmark]
+        //public void MagicStringBuilderAppend()
+        //{
+        //    var sb = new MagicStringBuilder.MagicBuilder();
+        //    foreach (var item in _appendData)
+        //        sb.Append(item);
+        //}
+
+        //[Benchmark]
+        //public void SystemStringBuilderAppend()
+        //{
+        //    var sb = new System.Text.StringBuilder();
+        //    foreach (var item in _appendData)
+        //        sb.Append(item);
+        //}
+
+
+
+        //[Benchmark]
+        //public void StrandedStringBuilderLargeAppend()
+        //{
+        //    var sb = new StrandedStringBuilder.StringBuilder();
+        //    for (int i = 0; i < largeAppendCount; i++)
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //}
+
+        //[Benchmark]
+        //public void MagicStringBuilderLargeAppend()
+        //{
+        //    var sb = new MagicStringBuilder.MagicBuilder();
+        //    for (int i = 0; i < largeAppendCount; i++)
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //}
+
+        //[Benchmark]
+        //public void SystemStringBuilderLargeAppend()
+        //{
+        //    var sb = new System.Text.StringBuilder();
+        //    for (int i = 0; i < largeAppendCount; i++)
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //}
+
+
+
+
+        //[Benchmark]
+        //public string StrandedStringBuilderAppendToString()
+        //{
+        //    var sb = new StrandedStringBuilder.StringBuilder();
+        //    foreach (var item in _appendData)
+        //        sb.Append(item);
+        //    return sb.ToString();
+        //}
+
+
+        //[Benchmark]
+        //public string MagicStringBuilderAppendToString()
+        //{
+        //    var sb = new MagicStringBuilder.MagicBuilder();
+        //    foreach (var item in _appendData)
+        //        sb.Append(item);
+        //    return sb.ToString();
+        //}
+
+        //[Benchmark]
+        //public string SystemStringBuilderAppendToString()
+        //{
+        //    var sb = new System.Text.StringBuilder();
+        //    foreach (var item in _appendData)
+        //        sb.Append(item);
+        //    return sb.ToString();
+        //}
+
+
+
+        //[Benchmark]
+        //public string StrandedStringBuilderLargeAppendToString()
+        //{
+        //    var sb = new StrandedStringBuilder.StringBuilder();
+        //    for (int i = 0; i < largeAppendCount; i++)
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //    return sb.ToString();
+        //}
+
+        //[Benchmark]
+        //public string MagicStringBuilderLargeAppendToString()
+        //{
+        //    var sb = new MagicStringBuilder.MagicBuilder();
+        //    for (int i = 0; i < largeAppendCount; i++)
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //    return sb.ToString();
+        //}
+
+        //[Benchmark]
+        //public string SystemStringBuilderLargeAppendToString()
+        //{
+        //    var sb = new System.Text.StringBuilder();
+        //    for (int i = 0; i < largeAppendCount; i++)
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //    return sb.ToString();
+        //}
+
+
+        //[Benchmark]
+        //public void StrandedStringBuilderShortRemove()
+        //{
+        //    var sb = new StrandedStringBuilder.StringBuilder();
+        //    sb.Append("123").Append(456);
+        //    sb.Remove(2, 2);
+        //}
+
+        //[Benchmark]
+        //public void MagicStringBuilderShortRemove()
+        //{
+        //    var sb = new MagicStringBuilder.MagicBuilder();
+        //    sb.Append("123").Append(456);
+        //    sb.Remove(2, 2);
+        //}
+
+        //[Benchmark]
+        //public void SystemStringBuilderShortRemove()
+        //{
+        //    var sb = new System.Text.StringBuilder();
+        //    sb.Append("123").Append(456);
+        //    sb.Remove(2, 2);
+        //}
+
+
+        //[Benchmark]
+        //public void StrandedStringBuilderLargeAppendRemove()
+        //{
+        //    var sb = new StrandedStringBuilder.StringBuilder();
+        //    for (int i = 0; i < largeAppendCount; i++)
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //    sb.Remove(10, 30);
+        //}
+
+
+        //[Benchmark]
+        //public void MagicStringBuilderLargeAppendRemove()
+        //{
+        //    var sb = new MagicStringBuilder.MagicBuilder();
+        //    for (int i = 0; i < largeAppendCount; i++)
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //    sb.Remove(10, 30);
+        //}
+
+        //[Benchmark]
+        //public void SystemStringBuilderLargeAppendRemove()
+        //{
+        //    var sb = new System.Text.StringBuilder();
+        //    for (int i = 0; i < largeAppendCount; i++)
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //    sb.Remove(10, 30);
+        //}
+
+
+        //[Benchmark]
+        //public void StrandedStringBuilderRemoveMany()
+        //{
+        //    var sb = new StrandedStringBuilder.StringBuilder();
+        //    foreach (var item in _appendData)
+        //        sb.Append(item);
+        //    sb.Remove(0, 5);
+        //    sb.Remove(10, 5);
+        //    sb.Remove(0, 5);
+        //    sb.Remove(15, 5);
+        //}
+
+
+        //[Benchmark]
+        //public void MagicStringBuilderRemoveMany()
+        //{
+        //    var sb = new MagicStringBuilder.MagicBuilder();
+        //    foreach (var item in _appendData)
+        //        sb.Append(item);
+        //    sb.Remove(0, 5);
+        //    sb.Remove(10, 5);
+        //    sb.Remove(0, 5);
+        //    sb.Remove(15, 5);
+        //}
+
+        //[Benchmark]
+        //public void SystemStringBuilderRemoveMany()
+        //{
+        //    var sb = new System.Text.StringBuilder();
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //    sb.Remove(0, 5);
+        //    sb.Remove(10, 5);
+        //    sb.Remove(0, 5);
+        //    sb.Remove(15, 5);
+        //}
+
+
+        //[Benchmark]
+        //public void StrandedStringBuilderReplace()
+        //{
+        //    var sb = new StrandedStringBuilder.StringBuilder();
+        //    foreach (var item in _appendData)
+        //        sb.Append(item);
+        //    sb.Replace("2018256345", "123");
+        //}
+
+        //[Benchmark]
+        //public void SystemStringBuilderReplace()
+        //{
+        //    var sb = new System.Text.StringBuilder();
+        //    foreach (var item in _appendData)
+        //        sb.Append(item);
+        //    sb.Replace("2018256345", "123");
+        //}
+
+
+        //[Benchmark]
+        //public void StrandedStringBuilderLargeAppendReplace()
+        //{
+        //    var sb = new StrandedStringBuilder.StringBuilder();
+        //    for (int i = 0; i < largeAppendCount; i++)
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //    sb.Replace("2018256345", "123");
+        //}
+
+        //[Benchmark]
+        //public void SystemStringBuilderLargeAppendReplace()
+        //{
+        //    var sb = new System.Text.StringBuilder();
+        //    for (int i = 0; i < largeAppendCount; i++)
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //    sb.Replace("2018256345", "123");
+        //}
+
+
+        //[Benchmark]
+        //public void StrandedStringBuilderReplaceMany()
+        //{
+        //    var sb = new StrandedStringBuilder.StringBuilder();
+        //        foreach (var item in _appendData)
+        //            sb.Append(item);
+        //    sb.Replace("1618543976", "123");
+        //    sb.Replace("1813591724", "123");
+        //    sb.Replace("2018256345", "123");
+        //}
+
+        //[Benchmark]
+        //public void SystemStringBuilderReplaceMany()
+        //{
+        //    var sb = new System.Text.StringBuilder();
+        //    foreach (var item in _appendData)
+        //        sb.Append(item);
+        //    sb.Replace("1618543976", "123");
+        //    sb.Replace("1813591724", "123");
+        //    sb.Replace("2018256345", "123");
+        //}
+    }
+
+    class SummaryOrderer : IOrderer
+    {
+        public bool SeparateLogicalGroups => true;
+
+        public IEnumerable<BenchmarkCase> GetExecutionOrder(ImmutableArray<BenchmarkCase> benchmarksCase)
         {
-            var sb = new StrandedStringBuilder.StringBuilder();
-            foreach (var item in _appendData)
-                sb.Append(item);
+            return benchmarksCase.OrderBy(x => x.Descriptor.Type.Name);
         }
 
-        [Benchmark]
-        public void SystemStringBuilderAppend()
+        public string GetHighlightGroupKey(BenchmarkCase benchmarkCase)
         {
-            var sb = new System.Text.StringBuilder();
-            foreach (var item in _appendData)
-                sb.Append(item);
+            return "";
         }
 
-
-
-        [Benchmark]
-        public void StrandedStringBuilderLargeAppend()
+        public string GetLogicalGroupKey(ImmutableArray<BenchmarkCase> allBenchmarksCases, BenchmarkCase benchmarkCase)
         {
-            var sb = new StrandedStringBuilder.StringBuilder();
-            for (int i = 0; i < largeAppendCount; i++)
-                foreach (var item in _appendData)
-                    sb.Append(item);
+            return benchmarkCase.Descriptor.Type.Name;
         }
 
-        [Benchmark]
-        public void SystemStringBuilderLargeAppend()
+        public IEnumerable<IGrouping<string, BenchmarkCase>> GetLogicalGroupOrder(IEnumerable<IGrouping<string, BenchmarkCase>> logicalGroups)
         {
-            var sb = new System.Text.StringBuilder();
-            for (int i = 0; i < largeAppendCount; i++)
-                foreach (var item in _appendData)
-                    sb.Append(item);
+            return logicalGroups;
         }
 
-
-
-
-        [Benchmark]
-        public string StrandedStringBuilderAppendToString()
+        public IEnumerable<BenchmarkCase> GetSummaryOrder(ImmutableArray<BenchmarkCase> benchmarksCases, Summary summary)
         {
-            var sb = new StrandedStringBuilder.StringBuilder();
-            foreach (var item in _appendData)
-                sb.Append(item);
-            return sb.ToString();
-        }
-
-        [Benchmark]
-        public string SystemStringBuilderAppendToString()
-        {
-            var sb = new System.Text.StringBuilder();
-            foreach (var item in _appendData)
-                sb.Append(item);
-            return sb.ToString();
-        }
-
-
-
-        [Benchmark]
-        public string StrandedStringBuilderLargeAppendToString()
-        {
-            var sb = new StrandedStringBuilder.StringBuilder();
-            for (int i = 0; i < largeAppendCount; i++)
-                foreach (var item in _appendData)
-                    sb.Append(item);
-            return sb.ToString();
-        }
-
-        [Benchmark]
-        public string SystemStringBuilderLargeAppendToString()
-        {
-            var sb = new System.Text.StringBuilder();
-            for (int i = 0; i < largeAppendCount; i++)
-                foreach (var item in _appendData)
-                    sb.Append(item);
-            return sb.ToString();
-        }
-
-
-        [Benchmark]
-        public void StrandedStringBuilderShortRemove()
-        {
-            var sb = new StrandedStringBuilder.StringBuilder();
-            sb.Append("123").Append(456);
-            sb.Remove(2, 2);
-        }
-
-        [Benchmark]
-        public void SystemStringBuilderShortRemove()
-        {
-            var sb = new System.Text.StringBuilder();
-            sb.Append("123").Append(456);
-            sb.Remove(2, 2);
-        }
-
-
-        [Benchmark]
-        public void StrandedStringBuilderLargeAppendRemove()
-        {
-            var sb = new StrandedStringBuilder.StringBuilder();
-            for (int i = 0; i < largeAppendCount; i++)
-                foreach (var item in _appendData)
-                    sb.Append(item);
-            sb.Remove(10, 30);
-        }
-
-        [Benchmark]
-        public void SystemStringBuilderLargeAppendRemove()
-        {
-            var sb = new System.Text.StringBuilder();
-            for (int i = 0; i < largeAppendCount; i++)
-                foreach (var item in _appendData)
-                    sb.Append(item);
-            sb.Remove(10, 30);
-        }
-
-
-        [Benchmark]
-        public void StrandedStringBuilderRemoveMany()
-        {
-            var sb = new StrandedStringBuilder.StringBuilder();
-            foreach (var item in _appendData)
-                sb.Append(item);
-            sb.Remove(0, 5);
-            sb.Remove(10, 5);
-            sb.Remove(0, 5);
-            sb.Remove(15, 5);
-        }
-
-        [Benchmark]
-        public void SystemStringBuilderRemoveMany()
-        {
-            var sb = new System.Text.StringBuilder();
-                foreach (var item in _appendData)
-                    sb.Append(item);
-            sb.Remove(0, 5);
-            sb.Remove(10, 5);
-            sb.Remove(0, 5);
-            sb.Remove(15, 5);
-        }
-
-
-        [Benchmark]
-        public void StrandedStringBuilderReplace()
-        {
-            var sb = new StrandedStringBuilder.StringBuilder();
-            foreach (var item in _appendData)
-                sb.Append(item);
-            sb.Replace("2018256345", "123");
-        }
-
-        [Benchmark]
-        public void SystemStringBuilderReplace()
-        {
-            var sb = new System.Text.StringBuilder();
-            foreach (var item in _appendData)
-                sb.Append(item);
-            sb.Replace("2018256345", "123");
-        }
-
-
-        [Benchmark]
-        public void StrandedStringBuilderLargeAppendReplace()
-        {
-            var sb = new StrandedStringBuilder.StringBuilder();
-            for (int i = 0; i < largeAppendCount; i++)
-                foreach (var item in _appendData)
-                    sb.Append(item);
-            sb.Replace("2018256345", "123");
-        }
-
-        [Benchmark]
-        public void SystemStringBuilderLargeAppendReplace()
-        {
-            var sb = new System.Text.StringBuilder();
-            for (int i = 0; i < largeAppendCount; i++)
-                foreach (var item in _appendData)
-                    sb.Append(item);
-            sb.Replace("2018256345", "123");
-        }
-
-
-        [Benchmark]
-        public void StrandedStringBuilderReplaceMany()
-        {
-            var sb = new StrandedStringBuilder.StringBuilder();
-                foreach (var item in _appendData)
-                    sb.Append(item);
-            sb.Replace("1618543976", "123");
-            sb.Replace("1813591724", "123");
-            sb.Replace("2018256345", "123");
-        }
-
-        [Benchmark]
-        public void SystemStringBuilderReplaceMany()
-        {
-            var sb = new System.Text.StringBuilder();
-            foreach (var item in _appendData)
-                sb.Append(item);
-            sb.Replace("1618543976", "123");
-            sb.Replace("1813591724", "123");
-            sb.Replace("2018256345", "123");
+            return benchmarksCases.OrderBy(x => x.Descriptor.Type.Name).ThenBy(x => x.DisplayInfo);
         }
     }
 
@@ -253,7 +359,10 @@ namespace StrandedStringBuilder.Benchmarks
         {
             var config = ManualConfig.Create(DefaultConfig.Instance);
             config.Add(MemoryDiagnoser.Default);
-            BenchmarkRunner.Run<StrandedStringBuilderBenchmark>(config);
+            config.Add(HardwareCounter.CacheMisses);
+            config.Options |= ConfigOptions.JoinSummary;
+            config.Orderer = new SummaryOrderer();
+            BenchmarkRunner.Run(Assembly.GetExecutingAssembly(), config);
             Console.ReadLine();
         }
     }
