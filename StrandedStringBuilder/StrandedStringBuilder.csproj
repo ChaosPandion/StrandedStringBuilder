@@ -12,6 +12,8 @@
     <PackageTags>csharp, c#, string, stringbuilder</PackageTags>
     <RepositoryUrl>https://github.com/ChaosPandion/StrandedStringBuilder</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <Version>1.0.1</Version>
+    <PackageProjectUrl>https://github.com/ChaosPandion/StrandedStringBuilder</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -8,6 +8,8 @@ namespace StrandedStringBuilder.Console
     {
         static void Main(string[] args)
         {
+            var s = "ABC".AsSpan();
+            System.Console.WriteLine(s.ToString());
         }
     }
 }

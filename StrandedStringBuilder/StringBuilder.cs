@@ -249,6 +249,15 @@ namespace StrandedStringBuilder
         }
 
         /// <summary>
+        /// Removes all characters from this instance.
+        /// </summary>
+        public StringBuilder Clear()
+        {
+            _first = _last = null;
+            return this;
+        }
+
+        /// <summary>
         /// Converts the value of this instance to a System.String.
         /// </summary>
         /// <returns>A string whose value is the same as this instance.</returns>
