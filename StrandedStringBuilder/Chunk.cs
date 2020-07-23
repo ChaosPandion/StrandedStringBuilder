@@ -20,6 +20,14 @@ namespace StrandedStringBuilder
             Value = value;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Chunk(string value)
+        {
+            Value = value;
+            _isConverted = true;
+            _string = value;
+        }
+
         public int Length
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -53,5 +61,8 @@ namespace StrandedStringBuilder
         {
             return String;
         }
+
+        public static Chunk Empty { get; } = new Chunk("");
+        public static Chunk NewLine { get; } = new Chunk(Environment.NewLine);
     }
 }

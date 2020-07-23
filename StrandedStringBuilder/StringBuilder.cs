@@ -41,17 +41,7 @@ namespace StrandedStringBuilder
         /// <returns>The current instance of <see cref="StringBuilder"/>.</returns>
         public StringBuilder Append(object value)
         {
-            var next = new Chunk(value ?? string.Empty);
-            if (_first == null)
-            {
-                _first = _last = next;
-            }
-            else
-            {
-                _last.Next = next;
-                _last = next;
-            }
-            return this;
+            return Append(new Chunk(value ?? string.Empty));
         }
 
         /// <summary>
@@ -82,7 +72,21 @@ namespace StrandedStringBuilder
         public StringBuilder AppendLine(object value)
         {
             Append(value);
-            Append(Environment.NewLine);
+            Append(Chunk.NewLine);
+            return this;
+        }
+
+        private StringBuilder Append(Chunk chunk)
+        {
+            if (_first == null)
+            {
+                _first = _last = chunk;
+            }
+            else
+            {
+                _last.Next = chunk;
+                _last = chunk;
+            }
             return this;
         }
 
@@ -176,8 +180,8 @@ namespace StrandedStringBuilder
             if (secondChunk == null && after.Length > 0)
                 secondChunk = new Chunk(after);
 
-            firstChunk = firstChunk ?? new Chunk("");
-            secondChunk = secondChunk ?? new Chunk("");
+            firstChunk = firstChunk ?? Chunk.Empty;
+            secondChunk = secondChunk ?? Chunk.Empty;
             firstChunk.Next = secondChunk;
 
             if (chunksPassed == 0 && secondChunk.Next == null)
