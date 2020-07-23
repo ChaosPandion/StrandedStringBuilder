@@ -55,6 +55,38 @@ namespace StrandedStringBuilder
         }
 
         /// <summary>
+        /// Appends the supplied <paramref name="values"/>.
+        /// </summary>
+        /// <param name="values">The values to append.</param>
+        /// <returns>The current instance of <see cref="StringBuilder"/>.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="values"/> is null.
+        /// </exception>
+        public StringBuilder Append(IEnumerable<object> values)
+        {
+            if (values == null)
+                throw new ArgumentNullException(nameof(values));
+
+            foreach (var v in values)
+            {
+                Append(v);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Appends the supplied <paramref name="value"/> followed by a new line.
+        /// </summary>
+        /// <param name="value">The value to append.</param>
+        /// <returns>The current instance of <see cref="StringBuilder"/>.</returns>
+        public StringBuilder AppendLine(object value)
+        {
+            Append(value);
+            Append(Environment.NewLine);
+            return this;
+        }
+
+        /// <summary>
         /// Removes a sequence of characters at the specified <paramref name="index"/>.
         /// </summary>
         /// <param name="index">The starting index.</param>
