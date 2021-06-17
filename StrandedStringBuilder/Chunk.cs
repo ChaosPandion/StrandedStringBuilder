@@ -62,7 +62,7 @@ namespace StrandedStringBuilder
             return String;
         }
 
-        public static Chunk Empty { get; } = new Chunk("");
-        public static Chunk NewLine { get; } = new Chunk(Environment.NewLine);
+        public static Chunk Empty => new Chunk("");
+        public static Chunk NewLine => new Chunk(Environment.NewLine);
     }
 }

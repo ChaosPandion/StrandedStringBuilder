@@ -1,19 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Authors>Matthew O'Brien</Authors>
     <Company />
     <Product />
     <Description>A simple string builder and fast append performance.</Description>
-    <Copyright>2019 Matthew O'Brien</Copyright>
+    <Copyright>2021 Matthew O'Brien</Copyright>
     <PackageTags>csharp, c#, string, stringbuilder</PackageTags>
     <RepositoryUrl>https://github.com/ChaosPandion/StrandedStringBuilder</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <PackageProjectUrl>https://github.com/ChaosPandion/StrandedStringBuilder</PackageProjectUrl>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

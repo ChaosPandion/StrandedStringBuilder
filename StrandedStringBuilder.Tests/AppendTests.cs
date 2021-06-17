@@ -44,5 +44,15 @@ namespace StrandedStringBuilder.Tests
             sb.AppendLine(1);
             Assert.Equal("1\r\n", sb.ToString());
         }
+
+        [Fact]
+        public void AppendLine2()
+        {
+
+            var sb = new StringBuilder();
+            sb.AppendLine(1);
+            sb.AppendLine(2);
+            Assert.Equal("1\r\n2\r\n", sb.ToString());
+        }
     }
 }
