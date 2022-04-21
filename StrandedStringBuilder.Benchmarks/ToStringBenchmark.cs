@@ -6,7 +6,7 @@ using System.Text;
 
 namespace StrandedStringBuilder.Benchmarks
 {
-    [HardwareCounters(HardwareCounter.CacheMisses)]
+    //[HardwareCounters(HardwareCounter.CacheMisses)]
     public class ToStringBenchmark : BenchmarkBase
     {
         [Benchmark]

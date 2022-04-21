@@ -9,13 +9,13 @@ namespace StrandedStringBuilder
     [DebuggerStepThrough]
     internal sealed class Chunk
     {
-        public object Value;
-        private string _string;
+        public object? Value;
+        private string? _string;
         private bool _isConverted;
-        public Chunk Next;
+        public Chunk? Next;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Chunk(object value)
+        public Chunk(object? value)
         {
             Value = value;
         }
@@ -44,15 +44,21 @@ namespace StrandedStringBuilder
             get
             {
                 if (!_isConverted) Init();
-                return _string;
+                return _string!;
             }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Init()
         {
-            if (_string != null) return;
-            _string = Value?.ToString();
+            if (_isConverted) return;
+            _string = Value switch  
+            {
+                null => string.Empty,
+                StringProducer sp => sp(),
+                Func<string> f => f(),
+                _ => Value.ToString()
+            } ?? string.Empty;
             _isConverted = true;
         }
 
@@ -62,7 +68,7 @@ namespace StrandedStringBuilder
             return String;
         }
 
-        public static Chunk Empty => new Chunk("");
-        public static Chunk NewLine => new Chunk(Environment.NewLine);
+        public static Chunk Empty => new(string.Empty);
+        public static Chunk NewLine => new(Environment.NewLine);
     }
 }

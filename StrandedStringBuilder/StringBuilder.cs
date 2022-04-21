@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace StrandedStringBuilder
@@ -13,8 +14,8 @@ namespace StrandedStringBuilder
     /// </remarks>
     public sealed class StringBuilder
     {
-        private Chunk _first;
-        private Chunk _last;
+        private Chunk? _first;
+        private Chunk? _last;
 
         /// <summary>
         /// Gets the number of characters.
@@ -42,6 +43,17 @@ namespace StrandedStringBuilder
         public StringBuilder Append(object value)
         {
             return Append(new Chunk(value ?? string.Empty));
+        }
+
+        /// <summary>
+        /// Appends the supplied <paramref name="stringProducer"/>. 
+        /// The <paramref name="stringProducer"/> is not evaluated until the string is required.
+        /// </summary>
+        /// <param name="stringProducer">The string producer.</param>
+        /// <returns>The current instance of <see cref="StringBuilder"/>.</returns>
+        public StringBuilder Append(StringProducer stringProducer)
+        {
+            return Append(new Chunk(stringProducer ?? new StringProducer(() => string.Empty)));
         }
 
         /// <summary>
@@ -76,6 +88,19 @@ namespace StrandedStringBuilder
             return this;
         }
 
+        /// <summary>
+        /// Appends the supplied <paramref name="stringProducer"/> and a new line. 
+        /// The <paramref name="stringProducer"/> is not evaluated until the string is required.
+        /// </summary>
+        /// <param name="stringProducer">The string producer.</param>
+        /// <returns>The current instance of <see cref="StringBuilder"/>.</returns>
+        public StringBuilder AppendLine(StringProducer stringProducer)
+        {
+            Append(stringProducer);
+            Append(Chunk.NewLine);
+            return this;
+        }
+
         private StringBuilder Append(Chunk chunk)
         {
             if (_first == null)
@@ -84,7 +109,8 @@ namespace StrandedStringBuilder
             }
             else
             {
-                _last.Next = chunk;
+                Debug.Assert(_last != null);
+                _last!.Next = chunk;
                 _last = chunk;
             }
             return this;

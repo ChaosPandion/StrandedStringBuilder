@@ -12,7 +12,7 @@ namespace StrandedStringBuilder.Benchmarks
 {
     public abstract class BenchmarkBase
     {
-        public const int largeAppendCount = 4000;
+        public const int largeAppendCount = 6000;
 
         private static readonly object[] _appendData = new object[]
         {

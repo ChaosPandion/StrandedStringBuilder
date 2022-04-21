@@ -358,8 +358,10 @@ namespace StrandedStringBuilder.Benchmarks
         static void Main(string[] args)
         {
             var config = ManualConfig.Create(DefaultConfig.Instance);
-            config.Add(MemoryDiagnoser.Default);
-            config.Add(HardwareCounter.CacheMisses);
+            config.AddDiagnoser(MemoryDiagnoser.Default);
+            //config.AddHardwareCounters(HardwareCounter.CacheMisses);
+            //config.AddHardwareCounters(HardwareCounter.TotalCycles);
+
             config.Options |= ConfigOptions.JoinSummary;
             config.Orderer = new SummaryOrderer();
             BenchmarkRunner.Run(Assembly.GetExecutingAssembly(), config);
